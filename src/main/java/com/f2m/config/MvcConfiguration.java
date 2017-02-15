@@ -1,7 +1,7 @@
 package com.f2m.config;
 
-import com.f2m.dao.TraderDao;
-import com.f2m.dao.TraderDaoImpl;
+import com.f2m.dao.UserDao;
+import com.f2m.dao.UserDaoImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,9 +27,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         return dataSource;
     }
      
-    @Bean
-    public TraderDao getFileDAO() {
-        return new TraderDaoImpl(getDataSource());
-    }
+   
+
     
     }
