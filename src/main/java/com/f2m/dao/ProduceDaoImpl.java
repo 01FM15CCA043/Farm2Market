@@ -3,6 +3,7 @@ package com.f2m.dao;//package com.f2m.dao;
 
 import com.f2m.config.MvcConfiguration;
 import com.f2m.model.RequestProduces;
+import com.f2m.model.SampleRequestProduces;
 import net.minidev.json.JSONObject;
 
 
@@ -71,6 +72,28 @@ public class ProduceDaoImpl implements ProduceDao {
 
     }
 
+    @Override
+    public void sampleRequestProducesInsert(SampleRequestProduces sampleRequestProducesrequestProduces) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        DataSource ds;
+
+        MvcConfiguration config=new MvcConfiguration();
+        ds=config.getDataSource();
+        conn=ds.getConnection();
+
+        String mediasql = "INSERT INTO sampleRequest (id, trader_id, addProduces_id, status,date)"
+                + " VALUES (?, ?, ?, ?,?)";
+        ps=conn.prepareStatement(mediasql);
+
+        ps.setInt(1, sampleRequestProducesrequestProduces.getId());
+        ps.setInt(2, sampleRequestProducesrequestProduces.getTraderId());
+        ps.setInt(3, sampleRequestProducesrequestProduces.getAddProducesId());
+        ps.setString(4, sampleRequestProducesrequestProduces.getStatus());
+        ps.setDate(5, sampleRequestProducesrequestProduces.getDate());
+        ps.executeUpdate();
+    }
+
     public static int getRequestProducesId() throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -81,6 +104,25 @@ public class ProduceDaoImpl implements ProduceDao {
         conn=ds.getConnection();
 
         String sql = "SELECT count(id) FROM requestProduces";
+        ps=conn.prepareStatement(sql);
+        ps.execute();
+        ResultSet rs = ps.executeQuery();
+        int i=0 ;
+        if(rs.next())
+            i = rs.getInt(1);
+        return i;
+    }
+
+    public static int getSampleRquestProducesId() throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        DataSource ds;
+
+        MvcConfiguration config=new MvcConfiguration();
+        ds=config.getDataSource();
+        conn=ds.getConnection();
+
+        String sql = "SELECT count(id) FROM sampleRequest";
         ps=conn.prepareStatement(sql);
         ps.execute();
         ResultSet rs = ps.executeQuery();
