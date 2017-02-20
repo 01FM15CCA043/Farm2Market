@@ -25,7 +25,7 @@ public class ProduceDaoImpl implements ProduceDao {
         ds=config.getDataSource();
         conn=ds.getConnection();
 //select f.name,f.phone_no,f.address,p.produces,p.unit,a.stock,a.min_price from FarmerDetails f,ProducesInfo p,addProduces a where f.id=p.id and p.id=a.id and f.id=a.id
-        String sql = "select f.name,f.phone_no,f.address,p.produces,p.unit,a.stock,a.min_price from FarmerDetails f,ProducesInfo p,addProduces a where f.id=p.id and p.id=a.id and f.id=a.id";
+        String sql = "select f.name,f.phone_no,f.address,p.produces,p.unit,a.stock,a.min_price, image_url from ProducesImage pi, FarmerDetails f,ProducesInfo p,addProduces a where f.id=p.id and p.id=a.id and f.id=a.id and a.id=pi.id";
         //String sql1 = "select * from addProduces";
         ps=conn.prepareStatement(sql);
         ps.execute();
@@ -41,11 +41,40 @@ public class ProduceDaoImpl implements ProduceDao {
             Obj.put("stock",rs.getString("stock").trim());
             Obj.put("unit",rs.getString("unit").trim());
             Obj.put("min_price",rs.getString("min_price").trim());
+            Obj.put("image_url",rs.getString("image_url").trim());
+
             jsonArray.add(Obj);
         }
         return jsonArray;
     }
 
+    public ArrayList<JSONObject> getUploadedProduces() throws SQLException, ClassNotFoundException {
+        Connection conn= null;
+        PreparedStatement ps = null;
+        DataSource ds;
+        MvcConfiguration config=new MvcConfiguration();
+        ds=config.getDataSource();
+        conn=ds.getConnection();
+//select f.name,f.phone_no,f.address,p.produces,p.unit,a.stock,a.min_price from FarmerDetails f,ProducesInfo p,addProduces a where f.id=p.id and p.id=a.id and f.id=a.id
+        String sql = "select p.produces,p.unit,a.stock,a.min_price,image_url from ProducesImage pi,ProducesInfo p,addProduces a where p.id=a.id and a.id=pi.id";
+        //String sql1 = "select * from addProduces";
+        ps=conn.prepareStatement(sql);
+        ps.execute();
+        ResultSet rs = ps.executeQuery();
+        ArrayList<JSONObject> jsonArray=new ArrayList<JSONObject>();
+
+        while (rs.next()){
+            JSONObject Obj = new JSONObject();
+            Obj.put("produces",rs.getString("produces").trim());
+            Obj.put("stock",rs.getString("stock").trim());
+            Obj.put("unit",rs.getString("unit").trim());
+            Obj.put("min_price",rs.getString("min_price").trim());
+            Obj.put("image_url",rs.getString("image_url").trim());
+
+            jsonArray.add(Obj);
+        }
+        return jsonArray;
+    }
 
 
     @Override

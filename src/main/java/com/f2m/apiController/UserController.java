@@ -53,7 +53,7 @@ public class UserController {
         if (body.getPassword().equals(body.getCnfpassword())) {
             registration.setFarmerid(getFarmerid()+1);
             registration.setName(body.getName());
-            registration.setPhoneNo(body.getPhoneNo());
+            registration.setPhone_no(body.getPhone_no());
             registration.setPassword(body.getPassword());
             registration.setAddress(body.getAddress());
 

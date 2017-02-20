@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#submit").click(function () {
+                alert("hello")
+                var data1={
+                    type:$('#type').val(),
+                    imageUrl:$('#imageUrl').val(),
+                    date:$('#date').val(),
+                    name:$('#name').val(),
+                    phone_no:$('#phone').val(),
+                    password:$('#password').val(),
+                    cnfpassword:$('#cnfpassword').val(),
+                    address:$('#adress').val()
+                }
+                var url = 'http://localhost:8080/register/farmer';
+                alert("hello1")
+                    $.ajax({
+                        url:url,
+                        type:'POST',
+                        dataType: 'json',
+                        success: function() {
+                             alert("Save Complete")
+                         }
+                    });
+                    saveData.error(function(error) {
+                         alert("Something went wrong");
+                     }
+                     );
+                });
+
+    });
+    </script>
+</head>
+<body>
+    <form method="POST">
+    <input type="text" id="name" placeholder="name"/>
+    <input type="password" id="password" placeholder="password"/>
+    <input type="password" id="cnfpassword" placeholder="cnfpassword"/>
+    <input type="number" id="phone" placeholder="phone"/>
+    <input type="text" id="adress" placeholder="adress"/>
+    <input type="text" id="type" placeholder="type"/>
+    <input type="text" id="imageUrl" placeholder="url"/>
+    <input type="text" id="date" placeholder="date"/>
+    <input type="submit" id="submit" value="submit"/>
+
+    </form>
+
+</body>
+</html>

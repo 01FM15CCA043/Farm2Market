@@ -72,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void farmerDetailsInsert(FarmerRegistration registration) throws SQLException, ClassNotFoundException {
-        Connection conn = null;
+            Connection conn = null;
         PreparedStatement ps = null;
         DataSource ds;
 
@@ -96,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 
         ps.setInt(1, registration.getFarmerid());
         ps.setString(2, registration.getName());
-        ps.setString(3, registration.getPhoneNo());
+        ps.setString(3, registration.getPhone_no());
         ps.setString(4, registration.getPassword());
         ps.setString(5, registration.getAddress());
         ps.setInt(6, registration.getMediaId());

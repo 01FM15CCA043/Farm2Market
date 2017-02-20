@@ -31,11 +31,19 @@ import static com.f2m.dao.UserDaoImpl.getTraderid;
 @ResponseBody
 public class ProduceController {
     @RequestMapping(path="/list",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<JSONObject> listproduce() throws SQLException,ClassNotFoundException{
+    public ArrayList<JSONObject> listProduce() throws SQLException,ClassNotFoundException{
         ProduceDaoImpl produceDao = new ProduceDaoImpl();
         ArrayList<JSONObject> obj;
 
         obj  = produceDao.getProduces();
+        return obj;
+    }
+    @RequestMapping(path="/uploadedlist",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<JSONObject> uploadedListProduce() throws SQLException,ClassNotFoundException{
+        ProduceDaoImpl produceDao = new ProduceDaoImpl();
+        ArrayList<JSONObject> obj;
+
+        obj  = produceDao.getUploadedProduces();
         return obj;
     }
     @RequestMapping(path="/request",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)

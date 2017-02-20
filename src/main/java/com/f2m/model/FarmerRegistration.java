@@ -10,16 +10,21 @@ public class FarmerRegistration {
     
     private int farmerid;
     private String name;
-    private String phoneNo ;
+    private String phone_no;
     private String password;
     private String address;
     private String cnfpassword;
 
 
     private int mediaId;
-    private String type;
-    private String imageUrl;
-    private Date date;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getFarmerid() {
         return farmerid;
@@ -37,12 +42,12 @@ public class FarmerRegistration {
         this.name = name;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public String getPhone_no() {
+        return phone_no;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
     }
 
     public String getPassword() {
@@ -61,7 +66,6 @@ public class FarmerRegistration {
         this.address = address;
     }
 
-
     public String getCnfpassword() {
         return cnfpassword;
     }
@@ -76,14 +80,6 @@ public class FarmerRegistration {
 
     public void setMediaId(int mediaId) {
         this.mediaId = mediaId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getImageUrl() {
@@ -101,4 +97,10 @@ public class FarmerRegistration {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    private String type;
+    private String imageUrl;
+    private Date date;
+
+
 }
