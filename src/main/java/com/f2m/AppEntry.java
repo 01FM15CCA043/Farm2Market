@@ -1,16 +1,17 @@
 package com.f2m;
 
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Map;
+
+/**
+ * Created by bakarali on 11/3/17.
+ */
 @Controller
-class Appenrty {
-    @RequestMapping("/greeting")
-    public String index() {
-        return "index";
+public class AppEntry {
+    @RequestMapping("/register")
+    public String register(Map<String, java.lang.Object> model) {
+        return "register";
     }
-
 }
-

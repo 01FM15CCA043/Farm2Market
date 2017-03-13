@@ -6,7 +6,9 @@ import com.f2m.dao.UserDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
@@ -26,8 +28,4 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         dataSource.setPassword("aqra");
         return dataSource;
     }
-     
-   
-
-    
-    }
+}
